@@ -18,7 +18,6 @@ A complete production-ready AI-powered movie ticket booking system with a Netfli
 - React 18 (Vite)
 - Tailwind CSS
 - React Router
-- canvas-confetti
 - LocalStorage for session persistence
 
 ### Backend
