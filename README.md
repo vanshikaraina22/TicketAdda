@@ -1,4 +1,4 @@
-# 🎬 AI Movie Ticket Booking System
+# 🎬 TicketAdda - AI Movie Ticket Booking System
 
 A complete production-ready AI-powered movie ticket booking system with a Netflix-like UI, built with React, Tailwind CSS, and Node.js.
 
@@ -195,4 +195,3 @@ MIT License - Feel free to use this project for learning and development!
 ---
 
 **Built with ❤️ for movie lovers**
-
