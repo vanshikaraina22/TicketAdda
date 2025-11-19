@@ -9,6 +9,7 @@ A complete production-ready AI-powered movie ticket booking system with a Netfli
 - **Movie Selection**: Browse movies by language (English, Hindi, Kannada, Tamil, Telugu)
 - **AI Chatbot**: Get personalized movie recommendations via AI-powered chat assistant
 - **Seat Booking**: Interactive seat selection with real-time price calculation
+- **Food Selection**: Browse and add snacks and beverages with dynamic price updates
 - **Booking Confirmation**: Beautiful confirmation page with confetti animation
 - **Netflix-like UI**: Modern, responsive design with smooth animations and glow effects
 
@@ -81,7 +82,8 @@ TMDB_API_KEY=your_tmdb_api_key_here
 2. **Select Location** → Choose your city
 3. **Browse Movies** → Filter by language, use AI chatbot for recommendations
 4. **Select Seats** → Choose seats from the interactive grid
-5. **Confirm Booking** → View confirmation with booking ID
+5. **Select Food** → Choose snacks and beverages from the menu
+6. **Confirm Booking** → View confirmation with booking ID
 
 ## 📁 Project Structure
 
@@ -94,6 +96,7 @@ project/
  │   │   │   ├─ LocationSelection.jsx
  │   │   │   ├─ MovieSelection.jsx
  │   │   │   ├─ SeatBooking.jsx
+ │   │   │   ├─ FoodSelection.jsx
  │   │   │   └─ BookingConfirmation.jsx
  │   │   ├─ components/
  │   │   │   └─ AIChatbot.jsx
