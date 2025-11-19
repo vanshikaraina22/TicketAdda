@@ -113,10 +113,44 @@ function BookingConfirmation() {
                 </div>
               </div>
 
+              {bookingData.foodItems && bookingData.foodItems.length > 0 && (
+                <div className="bg-netflix-black rounded-lg p-4">
+                  <p className="text-gray-400 text-sm mb-3">Food Items</p>
+                  <div className="space-y-2">
+                    {bookingData.foodItems.map((food) => (
+                      <div key={food.id} className="flex justify-between items-center">
+                        <span className="text-white">{food.name}</span>
+                        <span className="text-netflix-red font-semibold">₹{food.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-gray-700 mt-3 pt-3 flex justify-between">
+                    <span className="text-gray-400">Food Subtotal</span>
+                    <span className="text-white font-semibold">
+                      ₹{bookingData.foodItems.reduce((sum, food) => sum + food.price, 0)}
+                    </span>
+                  </div>
+                </div>
+              )}
+
               <div className="bg-netflix-black rounded-lg p-4">
-                <div className="flex justify-between items-center">
-                  <p className="text-gray-400 text-lg">Total Amount Paid</p>
-                  <p className="text-3xl font-bold text-netflix-red">₹{bookingData.totalAmount}</p>
+                <div className="space-y-2">
+                  {bookingData.baseAmount && (
+                    <div className="flex justify-between items-center text-gray-400">
+                      <span>Seats Subtotal</span>
+                      <span>₹{bookingData.baseAmount}</span>
+                    </div>
+                  )}
+                  {bookingData.foodItems && bookingData.foodItems.length > 0 && (
+                    <div className="flex justify-between items-center text-gray-400">
+                      <span>Food Subtotal</span>
+                      <span>₹{bookingData.foodItems.reduce((sum, food) => sum + food.price, 0)}</span>
+                    </div>
+                  )}
+                  <div className="border-t border-gray-700 pt-2 flex justify-between items-center">
+                    <p className="text-gray-400 text-lg">Total Amount Paid</p>
+                    <p className="text-3xl font-bold text-netflix-red">₹{bookingData.totalAmount}</p>
+                  </div>
                 </div>
               </div>
             </div>

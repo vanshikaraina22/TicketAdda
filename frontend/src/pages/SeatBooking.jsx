@@ -39,16 +39,20 @@ function SeatBooking() {
       return
     }
     
+    const baseAmount = selectedSeats.length * seatPrice
     const bookingData = {
       seats: selectedSeats,
-      totalAmount: selectedSeats.length * seatPrice,
+      baseAmount: baseAmount,
+      totalAmount: baseAmount,
       movie: movie,
       city: localStorage.getItem('selectedCity'),
-      bookingId: `BK${Date.now()}${Math.random().toString(36).substr(2, 5).toUpperCase()}`
+      bookingId: `BK${Date.now()}${Math.random().toString(36).substr(2, 5).toUpperCase()}`,
+      foodItems: [],
+      paid: false // Will be set to true after food selection or skip
     }
     
     localStorage.setItem('bookingData', JSON.stringify(bookingData))
-    navigate('/confirmation')
+    navigate('/food')
   }
 
   if (!movie) {
@@ -150,7 +154,7 @@ function SeatBooking() {
             disabled={selectedSeats.length === 0}
             className="px-8 py-3 bg-netflix-red text-white rounded-lg hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed glow-effect"
           >
-            Proceed to Payment
+            Continue to Food Selection
           </button>
         </div>
       </div>

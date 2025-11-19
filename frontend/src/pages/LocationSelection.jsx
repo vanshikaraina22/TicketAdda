@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const cities = [
-  { name: 'Chandigarh', icon: '🏛️', monument: 'Rock Garden' },
+  { name: 'Chandigarh', 'icon': '🏛️', monument: 'Rock Garden' },
   { name: 'Delhi', icon: '🕌', monument: 'Red Fort' },
   { name: 'Gurgaon', icon: '🏢', monument: 'Cyber Hub' },
   { name: 'Pune', icon: '🏰', monument: 'Shaniwar Wada' },
