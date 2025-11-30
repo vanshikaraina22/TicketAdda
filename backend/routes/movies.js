@@ -1,13 +1,12 @@
-import express from 'express'
+import { Router } from 'express'
 import { getMoviesByLanguage, getPopularMovies } from '../controllers/movieController.js'
 
-const router = express.Router()
+const router = Router()
 
-// Get movies by language
+// GET /api/movies?language=English
 router.get('/', getMoviesByLanguage)
 
-// Get popular movies
+// GET /api/movies/popular?language=en
 router.get('/popular', getPopularMovies)
 
 export default router
-

@@ -2,7 +2,11 @@ import { useState, useRef, useEffect } from 'react'
 
 function AIChatbot({ movies }) {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hi! I can help you find the perfect movie. Ask me anything!' }
+    {
+      role: 'assistant',
+      content:
+        'Hi! I can help you find the perfect movie. Ask me anything!'
+    }
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -17,44 +21,62 @@ function AIChatbot({ movies }) {
   }, [messages])
 
   const handleSend = async () => {
-    if (!input.trim()) return
+    const trimmed = input.trim()
+    if (!trimmed) return
 
-    const userMessage = { role: 'user', content: input }
+    const userMessage = { role: 'user', content: trimmed }
     setMessages(prev => [...prev, userMessage])
     setInput('')
     setLoading(true)
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: trimmed })
       })
 
+      if (!response.ok) {
+        console.error('Chat API error status:', response.status)
+        throw new Error('Non-200 response from API')
+      }
+
       const data = await response.json()
-      
+
       const assistantMessage = {
         role: 'assistant',
-        content: data.reply,
+        content:
+          data.reply ||
+          "Hmm, I couldn't think of a suggestion. Try asking in a different way!",
         recommendations: data.recommendations || []
       }
-      
+
       setMessages(prev => [...prev, assistantMessage])
     } catch (error) {
-      console.error('Error:', error)
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.'
-      }])
+      console.error('Error calling chat API:', error)
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'Sorry, I encountered an error. Please try again.'
+        }
+      ])
     } finally {
       setLoading(false)
     }
   }
 
-  const handleRecommendationClick = (movieName) => {
+  const handleRecommendationClick = movieName => {
     setInput(`Tell me about ${movieName}`)
+  }
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSend()
+    }
   }
 
   return (
@@ -68,7 +90,9 @@ function AIChatbot({ movies }) {
         {messages.map((msg, idx) => (
           <div
             key={idx}
-            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${
+              msg.role === 'user' ? 'justify-end' : 'justify-start'
+            }`}
           >
             <div
               className={`max-w-[80%] rounded-lg p-3 ${
@@ -77,7 +101,8 @@ function AIChatbot({ movies }) {
                   : 'bg-netflix-black text-gray-200'
               }`}
             >
-              <p className="text-sm">{msg.content}</p>
+              <p className="text-sm whitespace-pre-line">{msg.content}</p>
+
               {msg.recommendations && msg.recommendations.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {msg.recommendations.map((rec, recIdx) => (
@@ -94,13 +119,20 @@ function AIChatbot({ movies }) {
             </div>
           </div>
         ))}
+
         {loading && (
           <div className="flex justify-start">
             <div className="bg-netflix-black rounded-lg p-3">
               <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                <div
+                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  style={{ animationDelay: '0.2s' }}
+                />
+                <div
+                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  style={{ animationDelay: '0.4s' }}
+                />
               </div>
             </div>
           </div>
@@ -113,8 +145,8 @@ function AIChatbot({ movies }) {
           <input
             type="text"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="Ask about movies..."
             className="flex-1 px-4 py-2 bg-netflix-black border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-netflix-red"
           />
@@ -132,4 +164,3 @@ function AIChatbot({ movies }) {
 }
 
 export default AIChatbot
-

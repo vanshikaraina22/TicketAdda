@@ -12,23 +12,26 @@ function Login() {
 
   const validate = () => {
     const newErrors = {}
-    
+  
+    // Name
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required'
     }
-    
+  
+    // Phone: Indian mobile - 10 digits, starts with 6-9
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone is required'
-    } else if (!/^\d{10}$/.test(formData.phone)) {
-      newErrors.phone = 'Phone must be 10 digits'
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone.trim())) {
+      newErrors.phone = 'Enter a valid 10-digit Indian mobile number'
     }
-    
+  
+    // Email: only @gmail.com allowed
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format'
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email.trim())) {
+      newErrors.email = 'Only valid @gmail.com addresses are allowed'
     }
-    
+  
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -98,7 +101,7 @@ function Login() {
                   ? 'border-red-500 focus:ring-red-500' 
                   : 'border-gray-600 focus:ring-netflix-red'
               }`}
-              placeholder="10 digit phone number"
+              placeholder="10 digit valid phone number"
             />
             {errors.phone && (
               <p className="mt-1 text-sm text-red-500 animate-slide-up">{errors.phone}</p>
@@ -119,7 +122,7 @@ function Login() {
                   ? 'border-red-500 focus:ring-red-500' 
                   : 'border-gray-600 focus:ring-netflix-red'
               }`}
-              placeholder="your.email@example.com"
+              placeholder="example@gmail.com"
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-500 animate-slide-up">{errors.email}</p>
