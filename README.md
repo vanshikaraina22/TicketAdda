@@ -48,7 +48,7 @@ Frontend will run on `http://localhost:3000`
 ```bash
 cd backend
 npm install
-npm start
+node server.js
 ```
 
 Backend will run on `http://localhost:5000`
