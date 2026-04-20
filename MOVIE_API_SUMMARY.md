@@ -199,7 +199,7 @@ The system handles:
 3. Restart backend
 4. Enjoy real-time movie data! 🎬
 
----
+   
 
 **The system works perfectly without an API key, but adding TMDb API gives you access to thousands of real movies with high-quality posters!**
 
