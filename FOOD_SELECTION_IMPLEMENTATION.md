@@ -158,7 +158,5 @@ feat: add FoodSelection page & food item flow (optional add-on, ₹100 each)
 ```
 
 ---
-
-**Implementation Date**: 2025-01-XX  
 **Status**: ✅ Complete
 
