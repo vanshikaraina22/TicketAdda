@@ -105,7 +105,7 @@ temp/
 *.backup
 *~
 
-# Test files (optional - uncomment if you don't want to commit tests)
+# Test files 
 # **/__tests__/
 # **/*.test.js
 # **/*.spec.js
