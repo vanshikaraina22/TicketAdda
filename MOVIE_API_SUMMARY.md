@@ -79,8 +79,6 @@ npm start
 - Accurate ratings and durations
 - Thousands of movies available
 
----
-
 ## 🔧 API Endpoints
 
 ### Frontend → Backend
