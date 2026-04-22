@@ -6,7 +6,7 @@
 
 ## Setup Steps
 
-### 1. Install Frontend Dependencies
+### 1. Install Frontend Dependencies  
 ```bash
 cd frontend
 npm install
