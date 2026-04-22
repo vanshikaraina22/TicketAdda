@@ -4,7 +4,7 @@
 
 Added a new **Food Selection** step to the AI Movie Ticket Booking System. Users can optionally add snacks and drinks (₹100 each) after selecting seats, before final confirmation.
 
-## Files Created/Modified
+## Files Created/Modified  
 
 ### New Files
 1. **`frontend/src/pages/FoodSelection.jsx`**
