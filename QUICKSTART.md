@@ -1,7 +1,7 @@
 # 🚀 Quick Start Guide
 
 ## Prerequisites
-- Node.js v16+ installed
+- Node.js v16+ installed  
 - npm or yarn
 
 ## Setup Steps
